@@ -3,31 +3,30 @@ package com.springboot.biz.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.springboot.biz.model.ArticleVO;
+import com.springboot.biz.model.Article;
 import com.springboot.biz.repository.ArticleRepository;
 
 @Service("articleService")
-public class ArticleServiceImpl implements ArticleService {
+public class ArticleServiceImpl implements ArticleService{
 	@Autowired
 	private ArticleRepository dao;
 	
-	@Override
-	public void insert(ArticleVO vo) {
-		dao.insert(vo);
+	public void insert(Article article) {
+		dao.save(article);
 	}
 	
-	@Override
-	public void update(ArticleVO vo) {
-		dao.update(vo);
+	public void update(Article article) {
+		Article currArticle = dao.findTopByOrderByArticleIdDesc();
+		currArticle.setArticleTitle(article.getArticleTitle());
+		currArticle.setArticleContent(article.getArticleContent());
+		dao.save(currArticle);
 	}
 	
-	@Override
-	public void delete(ArticleVO vo) {
-		dao.delete(vo);
+	public void delete(Article article) {
+		dao.delete(article);
 	}
 	
-	@Override
-	public ArticleVO select(ArticleVO vo) {
-		return dao.select(vo);
+	public Article select() {
+		return dao.findTopByOrderByArticleIdDesc();
 	}
 }

@@ -1,31 +1,17 @@
 package com.springboot.biz.repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.springboot.biz.model.ArticleVO;
+import com.springboot.biz.model.Article;
 
 @Repository
-public class ArticleRepository {
+public interface ArticleRepository extends CrudRepository<Article, Integer>{
 	
-	@PersistenceContext
-	private EntityManager em;
+	Article findTopByOrderByArticleIdDesc();
 	
-	public void insert(ArticleVO vo) {
-		em.persist(vo);
-	}
+	Article save(Article article);
 	
-	public void update(ArticleVO vo) {
-		em.merge(vo);
-	}
+	void delete(Article article);
 	
-	public void delete(ArticleVO vo) {
-		em.remove(vo);
-	}
-	
-	public ArticleVO select(ArticleVO vo) {
-		return (ArticleVO) em.find(ArticleVO.class, vo.getArticle_id());
-	}
 }

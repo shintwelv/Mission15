@@ -1,15 +1,15 @@
 package com.springboot.biz.impl;
 
-import com.springboot.biz.model.ArticleVO;
+import com.springboot.biz.model.Article;
 
 public interface ArticleService {
 
-	void insert(ArticleVO vo);
+	void insert(Article article);
 
-	void update(ArticleVO vo);
+	void update(Article article);
 
-	void delete(ArticleVO vo);
+	void delete(Article article);
 
-	ArticleVO select(ArticleVO vo);
+	Article select();
 
 }
