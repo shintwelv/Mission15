@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringBootCrudApplication {
 
 	public static void main(String[] args) {
+		System.out.println("허허,,");
 		SpringApplication.run(SpringBootCrudApplication.class, args);
 	}
 
